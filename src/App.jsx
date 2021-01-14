@@ -15,6 +15,8 @@ class App extends Component {
 		};
 		this.SearchGifs = this.SearchGifs.bind(this);
 		this.UpdateQuery = this.UpdateQuery.bind(this);
+		this.SearchTrendingGifs = this.SearchTrendingGifs.bind(this);
+		// this.SearchRandomGif = this.SearchRandomGif.bind(this);
 	}
 
 	SearchGifs() {
@@ -34,6 +36,39 @@ class App extends Component {
 			.catch((error) => console.log(error));
 	}
 
+	SearchTrendingGifs(){
+		Axios.get('http://api.giphy.com/v1/gifs/trending', {
+			params:{
+				api_key: 'AZ6pMJriyxR3EPcTbZGZHy3wJLGrvnO4',
+				lang: 'en',
+				limit: '3'
+			},
+		})
+		.then((response) => {
+			this.setState({
+				gifs: response.data.data,
+			});
+		})
+		.catch((error) => console.log(error));
+	}
+
+	/* DOESNT WORK?
+
+		SearchRandomGif(){
+		Axios.get(' http://api.giphy.com/v1/gifs/random',{
+			params:{
+				api_key: 'AZ6pMJriyxR3EPcTbZGZHy3wJLGrvnO4',
+				lang: 'en',
+			},
+		})
+		.then((response) => {
+			this.setState({
+				gifs: response.data.data,
+			});
+		})
+		.catch((error) => console.log(error));
+	}*/
+
 	UpdateQuery(event) {
 		this.setState({ searchQuery: event.target.value });
 	}
@@ -45,6 +80,8 @@ class App extends Component {
 			onChange={this.UpdateQuery} value={this.state.searchQuery}>
 			</input>
 				<button onClick={this.SearchGifs}>Search</button>
+				<button onClick={this.SearchTrendingGifs}>TRENDING</button>
+				<button onClick={this.SearchRandomGif}>Feeling Lucky?</button>
 				<div>
 				{this.state.gifs.map((Entry) => {
 					return (
