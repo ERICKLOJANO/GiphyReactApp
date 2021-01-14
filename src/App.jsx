@@ -3,13 +3,20 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import './App.css';
 
+import GIFCard from './GIFCard'
+
+
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { searchQuery: 'Dog', gifs:[] };
+		this.state = {
+			searchQuery: '',
+			gifs:[]
+		};
 		this.SearchGifs = this.SearchGifs.bind(this);
 		this.UpdateQuery = this.UpdateQuery.bind(this);
 	}
+
 	SearchGifs() {
 		Axios.get('https://api.giphy.com/v1/gifs/search', {
 			params: {
@@ -26,15 +33,27 @@ class App extends Component {
 			})
 			.catch((error) => console.log(error));
 	}
+
 	UpdateQuery(event) {
 		this.setState({ searchQuery: event.target.value });
 	}
+
 	render() {
 		return (
 			<div>
-				<input onChange={this.UpdateQuery} value={this.state.searchQuery}></input>
+			<input
+			onChange={this.UpdateQuery} value={this.state.searchQuery}>
+			</input>
 				<button onClick={this.SearchGifs}>Search</button>
-				<div>{this.state.gifs.map((Entry) => {return <div className= "image"><img src={Entry.images.downsized.url} alt={Entry.title}></img></div>})}</div>
+				<div>
+				{this.state.gifs.map((Entry) => {
+					return (
+						<GIFCard
+							imageSrc = {Entry.images.downsized.url}
+						/>
+					)
+				})}
+				</div>
 			</div>
 		);
 	}
