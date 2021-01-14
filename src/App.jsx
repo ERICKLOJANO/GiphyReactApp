@@ -6,7 +6,7 @@ import './App.css';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.state = { searchQuery: 'Dog' };
+		this.state = { searchQuery: 'Dog', gifs:[] };
 		this.SearchGifs = this.SearchGifs.bind(this);
 		this.UpdateQuery = this.UpdateQuery.bind(this);
 	}
@@ -20,6 +20,9 @@ class App extends Component {
 		})
 			.then((response) => {
 				console.log(response);
+				this.setState({gifs:response.data.data});
+				console.log(this.state.gifs)
+				console.log(this.state.searchQuery)
 			})
 			.catch((error) => console.log(error));
 	}
@@ -31,6 +34,7 @@ class App extends Component {
 			<div>
 				<input onChange={this.UpdateQuery} value={this.state.searchQuery}></input>
 				<button onClick={this.SearchGifs}>Search</button>
+				<div>{this.state.gifs.map((Entry) => {return <div className= "image"><img src={Entry.images.downsized.url} alt={Entry.title}></img></div>})}</div>
 			</div>
 		);
 	}
