@@ -4,6 +4,7 @@ import Axios from 'axios';
 import './App.css';
 
 import GIFCard from './GIFCard'
+// import SearchField from './SearchField'
 
 
 class App extends Component {
@@ -17,6 +18,10 @@ class App extends Component {
 		this.UpdateQuery = this.UpdateQuery.bind(this);
 		this.SearchTrendingGifs = this.SearchTrendingGifs.bind(this);
 		// this.SearchRandomGif = this.SearchRandomGif.bind(this);
+	}
+
+	UpdateQuery(event) {
+	  this.setState({ searchQuery: event.target.value });
 	}
 
 	SearchGifs() {
@@ -52,8 +57,8 @@ class App extends Component {
 		.catch((error) => console.log(error));
 	}
 
-	/* DOESNT WORK?
-
+/*
+	DOESNT WORK
 		SearchRandomGif(){
 		Axios.get(' http://api.giphy.com/v1/gifs/random',{
 			params:{
@@ -63,7 +68,7 @@ class App extends Component {
 		})
 		.then((response) => {
 			this.setState({
-				gifs: response.data.data,
+				gifs: response.data,
 			});
 		})
 		.catch((error) => console.log(error));
@@ -75,14 +80,20 @@ class App extends Component {
 
 	render() {
 		return (
-			<div>
-			<input
-			onChange={this.UpdateQuery} value={this.state.searchQuery}>
-			</input>
+			<div className = "mainContainer">
+			<div className = "searchBar">
+				<input
+				onChange={this.UpdateQuery} value={this.state.searchQuery} placeholder = "Search Something!">
+				</input>
+			</div>
+			<br></br>
+			<div className = "buttonContainer">
 				<button onClick={this.SearchGifs}>Search</button>
 				<button onClick={this.SearchTrendingGifs}>TRENDING</button>
 				<button onClick={this.SearchRandomGif}>Feeling Lucky?</button>
-				<div>
+			</div>
+			<br></br>
+				<div id = "gifContainer">
 				{this.state.gifs.map((Entry) => {
 					return (
 						<GIFCard
