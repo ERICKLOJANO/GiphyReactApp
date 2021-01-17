@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/GiphyReactApp/static/css/main.cf49b884.chunk.css",
-    "main.js": "/GiphyReactApp/static/js/main.d0b34fc6.chunk.js",
-    "main.js.map": "/GiphyReactApp/static/js/main.d0b34fc6.chunk.js.map",
+    "main.js": "/GiphyReactApp/static/js/main.85cc15f0.chunk.js",
+    "main.js.map": "/GiphyReactApp/static/js/main.85cc15f0.chunk.js.map",
     "runtime-main.js": "/GiphyReactApp/static/js/runtime-main.9aff4568.js",
     "runtime-main.js.map": "/GiphyReactApp/static/js/runtime-main.9aff4568.js.map",
     "static/js/2.0b83ce07.chunk.js": "/GiphyReactApp/static/js/2.0b83ce07.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.9aff4568.js",
     "static/js/2.0b83ce07.chunk.js",
     "static/css/main.cf49b884.chunk.css",
-    "static/js/main.d0b34fc6.chunk.js"
+    "static/js/main.85cc15f0.chunk.js"
   ]
 }
