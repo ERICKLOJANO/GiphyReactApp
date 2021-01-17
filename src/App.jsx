@@ -42,7 +42,7 @@ class App extends Component {
 	}
 
 	SearchTrendingGifs(){
-		Axios.get('http://api.giphy.com/v1/gifs/trending', {
+		Axios.get('https://api.giphy.com/v1/gifs/trending', {
 			params:{
 				api_key: 'AZ6pMJriyxR3EPcTbZGZHy3wJLGrvnO4',
 				lang: 'en',
